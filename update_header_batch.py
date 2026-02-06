@@ -1,36 +1,19 @@
-<!DOCTYPE html>
+import os
+import re
 
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Laid | NVG Speciality Papers</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
-<!-- CSS -->
-<link href="css/leba-design.css" rel="stylesheet"/>
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</head>
-<body>
-                                                    <!-- Site Header -->
+NEW_HEADER = r"""    <!-- Site Header -->
     <header class="site-header">
         <div class="header-inner">
             <div class="nav-logo">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="Leba Papers" style="height: 65px; width: auto; display: block;">
+                    <img src="images/logo.png" alt="Leba Trading" style="height: 50px; width: auto; display: block;">
                 </a>
             </div>
             <div class="header-divider"></div>
             <nav class="nav-links">
                 <a href="about.html">Company</a>
                 <div class="nav-item-group">
-                    <a href="#" style="cursor: default;">Graphic Speciality <i data-lucide="chevron-down"
-                            style="width: 14px; margin-left: 4px;"></i></a>
+                    <a href="#" style="cursor: default;">Graphic Speciality <i data-lucide="chevron-down" style="width: 14px; margin-left: 4px;"></i></a>
                     <div class="nav-dropdown mega-menu">
                         <div class="dropdown-col">
                             <h4>Covering</h4>
@@ -78,8 +61,7 @@
                 </div>
                 <!-- Labels -->
                 <div class="nav-item-group">
-                    <a href="#" style="cursor: default;">Labels <i data-lucide="chevron-down"
-                            style="width: 14px; margin-left: 4px;"></i></a>
+                    <a href="#" style="cursor: default;">Labels <i data-lucide="chevron-down" style="width: 14px; margin-left: 4px;"></i></a>
                     <div class="nav-dropdown mega-menu">
                         <div class="dropdown-col">
                             <h4>Paper Labels</h4>
@@ -151,179 +133,81 @@
              });
         });
     </script>
-    
+    """
 
-    
+def update_file(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
 
+    # Regex definitions
+    nav_pattern_comment = re.compile(r'<!-- Floating Nav Pill -->.*?<nav class="nav-pill">.*?</nav>', re.DOTALL)
+    nav_pattern_plain = re.compile(r'<nav class="nav-pill">.*?</nav>', re.DOTALL)
     
+    # New pattern to support re-running on already updated files
+    site_header_pattern = re.compile(r'<!-- Site Header -->.*?<header class="site-header">.*?</header>', re.DOTALL)
     
+    mobile_header_pattern = re.compile(r'(<!-- Mobile Header -->)?\s*<header class="mobile-header">.*?</header>', re.DOTALL)
+    overlay_pattern = re.compile(r'(<!-- Mobile Menu Overlay -->)?\s*<div class="mobile-nav-overlay">.*?</div>', re.DOTALL)
+    active_script_pattern = re.compile(r'<!-- Active Link Script -->.*?<script>.*?</script>', re.DOTALL)
+    
+    found_nav = False
+    
+    # Let's start over with content for safety.
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
 
-    
+    # Step A: Identify locations
+    # First check if we already have the new header
+    if site_header_pattern.search(content):
+        # Just replace the site header with the new one
+        content = site_header_pattern.sub(NEW_HEADER, content)
+        # Also, check if we have multiple overlays or scripts and clean them up if needed,
+        # but the NEW_HEADER includes the overlay and script.
+        # So we should probably remove existing overlay/script if they are separate from the header block?
+        # The NEW_HEADER string includes: Header, Overlay, Script.
+        # If we replace just the Header block, we might duplicate Overlay/Script if they are outside active pattern.
+        # But wait, my NEW_HEADER variable above includes everything.
+        # So `site_header_pattern` should match everything from `<!-- Site Header -->` down to the end of the script?
+        # No, my regex `.*?<header class="site-header">.*?</header>` only matches the header tag.
+        
+        # Let's adjust the regex to encompass the whole block if possible, or just replace the header and assume the rest follows.
+        # IMPORTANT: The NEW_HEADER variable contains header + overlay + script.
+        # So if we replace just the `<header>...</header>` part with `NEW_HEADER`, we will get:
+        # <header>...</header><overlay>...</overlay><script>...</script> <overlay>...</overlay><script>...</script>
+        # (duplicates).
+        
+        # So we must remove the old overlay and script if we are doing a full replacement.
+        content = overlay_pattern.sub('', content)
+        content = active_script_pattern.sub('', content)
+        
+        # Now replace the header part with the FULL NEW_BLOCK
+        content = site_header_pattern.sub(NEW_HEADER, content)
+        print(f"Updated {filepath} (Updated existing new header)")
+        
+    elif nav_pattern_comment.search(content) or nav_pattern_plain.search(content):
+        # Old style found
+        content = mobile_header_pattern.sub('', content)
+        content = overlay_pattern.sub('', content)
+        
+        if nav_pattern_comment.search(content):
+            content = nav_pattern_comment.sub(NEW_HEADER, content)
+        else:
+            content = nav_pattern_plain.sub(NEW_HEADER, content)
+        print(f"Updated {filepath} (Converted from old header)")
+        
+    else:
+        print(f"Skipping {filepath} - no recognized header found.")
+        return
 
-    
-    
+    # Clean up empty lines
+    content = re.sub(r'\n{3,}', '\n\n', content)
 
-    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"Updated {filepath}")
 
-    
-    
-
-    
-    </div>
-
-    <!-- Blur Wrapper Start (Optional, handled by body class but good for structure) -->
-    <div class="content-blur-wrapper">
-    
-
-    
-    </div>
-
-    <!-- Blur Wrapper Start (Optional, handled by body class but good for structure) -->
-    <div class="content-blur-wrapper">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-<!-- Hero Section -->
-<section class="panel panel-hero-modern reveal-panel">
-<div class="main-wrapper grid-3 hero-content-grid">
-<div style="grid-column: span 2;">
-<p class="label-text mb-4" style="color: var(--color-accent);">Graphic Specialitylaid &amp;Felt Mark</p>
-<h1 class="reveal-text">Laid</h1>
-<p class="mt-4" style="max-width: 600px;">
-                    Contact Laid is a classic laid range of elegant white and ivory shades. It is produced from virgin ECF pulp from well managed forests.
-                 </p>
-<div class="mt-8">
-<a class="btn btn-primary" href="#specifications">View Specifications</a>
-</div>
-</div>
-<div>
-<img alt="Laid" src="images/inner-banner.png" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-card);"/>
-</div>
-</div>
-</section>
-<!-- Additional Product Info -->
-<section class="panel reveal-panel" style="background: white;">
-<div class="main-wrapper">
-<p class="label-text mb-4">Related Products</p>
-<div class="nav-links" style="flex-wrap: wrap; gap: 16px;">
-<a class="btn btn-outline" href="leadandfeltmark-hammer.html">Hammer</a>
-<a class="btn btn-outline" href="leadandfeltmark-twill.html">Twill</a>
-<a class="btn btn-outline" href="leadandfeltmark-prisma.html">Prisma</a>
-
-             </div>
-</div>
-</section>
-<!-- Specifications Section -->
-<section class="panel reveal-panel" id="specifications">
-<div class="main-wrapper">
-<h2 class="mb-4">Technical Specifications</h2>
-<div style="overflow-x: auto;">
-<table class="spec-table">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th class="text-left" scope="col">Colors</th>
-<th scope="col">Size</th>
-<th scope="col">GSM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">1</th>
-<td class="text-left">Contact White Laid</td>
-<td>70 X 100</td>
-<td>120, 220, 300</td>
-</tr>
-<tr>
-<th scope="row">2</th>
-<td class="text-left">Contact Ivory Laid</td>
-<td>70 X 100</td>
-<td>120, 220, 300</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<!-- Downloads Section -->
-<section class="panel reveal-panel">
-<div class="main-wrapper">
-<h3>Technical Specifications Sheet</h3>
-<div class="grid-3 mt-4">
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="panel mt-12" style="background: var(--bg-footer); color: var(--text-muted);">
-        <div class="main-wrapper grid-3">
-            <div>
-                <h4 class="mb-4" style="color: var(--text-inverse);">Contact Us</h4>
-                <p style="color: inherit; margin-bottom: 8px;"><a href="tel:+919388555999" style="color: inherit;">+91
-                        93 88
-                        555 999</a></p>
-                <p style="color: inherit; margin-bottom: 16px;"><a href="mailto:lebapapers@gmail.com"
-                        style="color: inherit;">lebapapers@gmail.com</a></p>
-                <p style="color: inherit; margin-bottom: 4px;"><strong style="color: var(--text-inverse);">Head
-                        Office</strong></p>
-                <p style="font-size: 0.9rem;">31/741A, Vyttila Junction, Ernakulam – 19,
-                    Kerala</p>
-            </div>
-            <div>
-                <h4 class="mb-4" style="color: var(--text-inverse);">Connect</h4>
-                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                    <a href="https://wa.me/919388555999?text=Hello%20LEBA%20Trading%20Agencies,%20I%20would%20like%20to%20enquire%20about%20your%20products.%20Please%20contact%20me."
-                        style="color: #25D366; display: flex; align-items: center; gap: 6px;" target="_blank">
-                        <i data-lucide="message-circle" style="width: 20px;"></i>
-                        Chat on WhatsApp
-                    </a>
-                </div>
-                <div style="margin-top: 24px;">
-                    <h4 class="mb-2" style="font-size: 1rem; color: var(--text-inverse);">Branch Office</h4>
-                    <p style="font-size: 0.9rem;">Dass Arcade, High Road, Thrissur – 01,
-                        Kerala</p>
-                </div>
-            </div>
-            <div>
-                <p style="font-size: 0.9rem;">
-                    ©
-                    <script>document.write(new Date().getFullYear())</script> LEBA PAPERS (Leba Trading Agencies).<br />
-                    <span style="font-size: 0.8rem;">All Rights Reserved.</span>
-                </p>
-            </div>
-        </div>
-    </footer>
-<!-- Initialize Scripts -->
-<script src="js/leba-main.js"></script>
-</body>
-</html>
+# Run
+root_dir = r"c:\Users\ijasa\OneDrive\Desktop\nvgpapers\nvgpapers.com"
+for filename in os.listdir(root_dir):
+    if filename.endswith(".html"):
+        update_file(os.path.join(root_dir, filename))

@@ -119,61 +119,82 @@ function initAnimations() {
     // Load Sequence
     const tl = gsap.timeline();
 
-    // Nav Pill Drop
-    tl.from('.nav-pill', {
+    // Site Header Drop (Smooth & Slow)
+    tl.from('.site-header', {
         y: -100,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: 'power4.out',
         delay: 0.2
     });
 
-    // Scroll Reveals (Panel)
-    const panels = document.querySelectorAll('.reveal-panel');
+    // Panel Reveals (The "Whispery" Flow)
+    // We target both specific review panels and general panels if they don't have the class yet, 
+    // but primarily likely .reveal-panel which we should ensure exists in HTML or add dynamically.
+    // Given the HTML structure, we might need to target sections generically if classes are missing, 
+    // but better to stick to the 'reveal-panel' hook which was used before.
+
+    const panels = document.querySelectorAll('.reveal-panel, section.panel');
     panels.forEach(panel => {
         gsap.fromTo(panel,
             {
                 y: 100,
                 opacity: 0,
-                scale: 0.95
+                scale: 0.98
             },
             {
                 scrollTrigger: {
                     trigger: panel,
-                    start: "top 85%",
+                    start: "top 85%", // Smooth entry point
                     toggleActions: "play none none reverse"
                 },
                 y: 0,
                 opacity: 1,
                 scale: 1,
-                duration: 1.2,
+                duration: 1.4, // Slower duration for "whispery" feel
                 ease: 'power3.out'
             }
         );
     });
 
-    // Text Reveals (Blur Effect)
-    const texts = document.querySelectorAll('.reveal-text');
-    texts.forEach(text => {
+    // Text Reveals with Blur (The Signature Effect)
+    // We target headings and paragraphs inside panels to give them that specific flow
+    // independent of the panel reveal for extra smoothness.
+    const textElements = document.querySelectorAll('.main-wrapper h1, .main-wrapper h2, .main-wrapper p:not(.nav-links a)');
+
+    textElements.forEach(text => {
         gsap.fromTo(text,
             {
-                filter: 'blur(20px)',
-                y: 50,
-                opacity: 0,
-                scale: 1.1
+                filter: 'blur(15px)', // Soft blur
+                y: 40,
+                opacity: 0
             },
             {
                 scrollTrigger: {
                     trigger: text,
-                    start: "top 90%",
+                    start: "top 92%",
                     toggleActions: "play none none reverse"
                 },
                 filter: 'blur(0px)',
                 y: 0,
                 opacity: 1,
+                duration: 1.8, // Long, luxurious duration
+                ease: 'expo.out' // "Whispery" settling
+            }
+        );
+    });
+
+    // Image Reveals (Parallax-ish drift)
+    const images = document.querySelectorAll('.card-img-container img, .panel img');
+    images.forEach(img => {
+        gsap.fromTo(img,
+            { scale: 1.1, opacity: 0.5 },
+            {
+                scrollTrigger: { trigger: img, start: "top 90%" },
                 scale: 1,
+                opacity: 1,
                 duration: 1.5,
-                ease: 'expo.out'
+                ease: "power2.out"
             }
         );
     });

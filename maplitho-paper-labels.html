@@ -8,7 +8,7 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
 <!-- CSS -->
 <link href="css/leba-design.css" rel="stylesheet"/>
 <!-- Scripts -->
@@ -17,136 +17,206 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-<!-- Floating Nav Pill -->
+                                                    <!-- Site Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Leba Papers" style="height: 65px; width: auto; display: block;">
+                </a>
+            </div>
+            <div class="header-divider"></div>
+            <nav class="nav-links">
+                <a href="about.html">Company</a>
+                <div class="nav-item-group">
+                    <a href="#" style="cursor: default;">Graphic Speciality <i data-lucide="chevron-down"
+                            style="width: 14px; margin-left: 4px;"></i></a>
+                    <div class="nav-dropdown mega-menu">
+                        <div class="dropdown-col">
+                            <h4>Covering</h4>
+                            <ul>
+                                <li><a href="covering-matt-plain.html">Matt Plain</a></li>
+                                <li><a href="covering-buckram.html">Buckram</a></li>
+                                <li><a href="covering-classy-covers.html">Classy Covers</a></li>
+                                <li><a href="covering-glossy.html">Glossy</a></li>
+                            </ul>
+                            <h4 style="margin-top: 24px;">Colored Board</h4>
+                            <ul>
+                                <li><a href="coloredboard-burano.html">Burano</a></li>
+                                <li><a href="coloredboard-sumo.html">Sumo</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>White & Cream</h4>
+                            <ul>
+                                <li><a href="whitecream-eco-cream.html">Eco Cream</a></li>
+                                <li><a href="whitecream-ecowhite.html">Eco White</a></li>
+                                <li><a href="whitecream-biancoflash.html">Biancoflash</a></li>
+                            </ul>
+                            <h4 style="margin-top: 24px;">Kraft & Recycled</h4>
+                            <ul>
+                                <li><a href="kraft-papers-boards.html">Kraft Papers</a></li>
+                                <li><a href="blackpaperboard-brilliantblack.html">Brilliant Black</a></li>
+                                <li><a href="blackpaperboard-shiroechorawblack.html">Raw Black</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>Textures & Art</h4>
+                            <ul>
+                                <li><a href="textures.html">Textured Boards</a></li>
+                                <li><a href="recycledpapers-shiroecho.html">Shiro Echo</a></li>
+                                <li><a href="recycledpapers-crushcorn.html">Crush Corn</a></li>
+                            </ul>
+                            <h4 style="margin-top: 24px;">Premium Print</h4>
+                            <ul>
+                                <li><a href="hiprint-vintage.html">Vintage</a></li>
+                                <li><a href="hiprint-influience.html">Influience</a></li>
+                                <li><a href="coated-majestic.html">Majestic</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Labels -->
+                <div class="nav-item-group">
+                    <a href="#" style="cursor: default;">Labels <i data-lucide="chevron-down"
+                            style="width: 14px; margin-left: 4px;"></i></a>
+                    <div class="nav-dropdown mega-menu">
+                        <div class="dropdown-col">
+                            <h4>Paper Labels</h4>
+                            <ul>
+                                <li><a href="maplitho-paper-labels.html">Maplitho</a></li>
+                                <li><a href="chromo-paper-labels.html">Chromo</a></li>
+                                <li><a href="highgloss-paper-labels.html">High Gloss</a></li>
+                                <li><a href="castcoated-paper-labels.html">Cast Coated</a></li>
+                                <li><a href="fluorescent-paper-labels.html">Fluorescent</a></li>
+                                <li><a href="goldpaper-paper-labels.html">Gold Paper</a></li>
+                                <li><a href="metallised-paper-labels.html">Metallised Paper</a></li>
+                                <li><a href="metallisedholographic-paper-labels.html">Metallised Holographic</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>Film Labels</h4>
+                            <ul>
+                                <li><a href="pvcclear-film-labels.html">PVC Clear</a></li>
+                                <li><a href="synthetic-film-labels.html">Synthetic</a></li>
+                                <li><a href="polyclear-film-labels.html">Poly Clear</a></li>
+                                <li><a href="polyopaque-film-labels.html">Poly Opaque</a></li>
+                                <li><a href="polymetallised-film-labels.html">Poly Metallised</a></li>
+                                <li><a href="pvcmetallised-film-labels.html">PVC Metallised</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>Special Labels</h4>
+                            <ul>
+                                <li><a href="removable-special-labels.html">Removable</a></li>
+                                <li><a href="piggyback-special-labels.html">Piggy Back</a></li>
+                                <li><a href="ecofriendly-special-labels.html">Eco-friendly</a></li>
+                                <li><a href="kraftpaper-special-labels.html">Kraft Paper</a></li>
+                                <li><a href="blackpaper-special-labels.html">Black Paper</a></li>
+                                <li><a href="sandwich-special-labels.html">Sandwich</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-actions">
+                <a class="btn btn-primary btn-pill-dark" href="contact.html">Get a quote</a>
+            </div>
+            <div class="hamburger mobile-trigger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-<nav class="nav-pill">
-<div class="nav-logo">
-<a href="index.html">
-<span style="font-weight: 800; font-size: 1.2rem; line-height: 1.2; display: block; color: var(--color-text);">LEBA<br/>PAPERS</span>
-</a>
-</div>
-<div class="nav-links" style="height: 100%;">
-<!-- Company -->
-<a href="about.html">Company</a>
-<!-- Graphic Speciality (Mega Menu) -->
-<div class="nav-item-group">
-<a href="#" style="cursor: default;">Graphic Speciality</a>
-<div class="nav-dropdown mega-menu">
-<!-- Col 1 -->
-<div class="dropdown-col">
-<h4>Covering</h4>
-<ul>
-<li><a href="covering-matt-plain.html">Matt Plain</a></li>
-<li><a href="covering-buckram.html">Buckram</a></li>
-<li><a href="covering-classy-covers.html">Classy Covers</a></li>
-<li><a href="covering-glossy.html">Glossy</a></li>
-</ul>
-<h4 style="margin-top: 24px;">Colored Board</h4>
-<ul>
-<li><a href="coloredboard-burano.html">Burano</a></li>
-<li><a href="coloredboard-sumo.html">Sumo</a></li>
-</ul>
-</div>
-<!-- Col 2 -->
-<div class="dropdown-col">
-<h4>White &amp; Cream</h4>
-<ul>
-<li><a href="whitecream-eco-cream.html">Eco Cream</a></li>
-<li><a href="whitecream-ecowhite.html">Eco White</a></li>
-<li><a href="whitecream-biancoflash.html">Biancoflash</a></li>
-</ul>
-<h4 style="margin-top: 24px;">Kraft &amp; Recycled</h4>
-<ul>
-<li><a href="kraft-papers-boards.html">Kraft Papers</a></li>
-<li><a href="blackpaperboard-brilliantblack.html">Brilliant Black</a></li>
-<li><a href="blackpaperboard-shiroechorawblack.html">Raw Black</a></li>
-</ul>
-</div>
-<!-- Col 3 -->
-<div class="dropdown-col">
-<h4>Textures &amp; Art</h4>
-<ul>
-<li><a href="textures.html">Textured Boards</a></li>
-<li><a href="recycledpapers-shiroecho.html">Shiro Echo</a></li>
-<li><a href="recycledpapers-crushcorn.html">Crush Corn</a></li>
-</ul>
-<h4 style="margin-top: 24px;">Premium Print</h4>
-<ul>
-<li><a href="hiprint-vintage.html">Vintage</a></li>
-<li><a href="hiprint-influience.html">Influience</a></li>
-<li><a href="coated-majestic.html">Majestic</a></li>
-</ul>
-</div>
-</div>
-</div>
-<!-- Labels (Dropdown) -->
-<div class="nav-item-group">
-<a href="#" style="cursor: default;">Labels</a>
-<div class="nav-dropdown mega-menu">
-<div class="dropdown-col">
-<h4>Paper Labels</h4>
-<ul>
-<li><a href="maplitho-paper-labels.html">Maplitho</a></li>
-<li><a href="chromo-paper-labels.html">Chromo</a></li>
-<li><a href="highgloss-paper-labels.html">High Gloss</a></li>
-<li><a href="castcoated-paper-labels.html">Cast Coated</a></li>
-<li><a href="fluorescent-paper-labels.html">Fluorescent</a></li>
-<li><a href="goldpaper-paper-labels.html">Gold Paper</a></li>
-<li><a href="metallised-paper-labels.html">Metallised Paper</a></li>
-<li><a href="metallisedholographic-paper-labels.html">Metallised Holographic</a></li>
-</ul>
-</div>
-<div class="dropdown-col">
-<h4>Film Labels</h4>
-<ul>
-<li><a href="pvcclear-film-labels.html">PVC Clear</a></li>
-<li><a href="synthetic-film-labels.html">Synthetic</a></li>
-<li><a href="polyclear-film-labels.html">Poly Clear</a></li>
-<li><a href="polyopaque-film-labels.html">Poly Opaque</a></li>
-<li><a href="polymetallised-film-labels.html">Poly Metallised</a></li>
-<li><a href="pvcmetallised-film-labels.html">PVC Metallised</a></li>
-</ul>
-</div>
-<div class="dropdown-col">
-<h4>Special Labels</h4>
-<ul>
-<li><a href="removable-special-labels.html">Removable</a></li>
-<li><a href="piggyback-special-labels.html">Piggy Back</a></li>
-<li><a href="ecofriendly-special-labels.html">Eco-friendly</a></li>
-<li><a href="kraftpaper-special-labels.html">Kraft Paper</a></li>
-<li><a href="blackpaper-special-labels.html">Black Paper</a></li>
-<li><a href="sandwich-special-labels.html">Sandwich</a></li>
-</ul>
-</div>
-</div>
-</div>
-<!-- Other Links -->
-<a href="#applications">Applications</a>
-<a href="about.html">Capacity</a>
-</div>
-<a class="btn btn-primary" href="contact.html">Contact</a>
-</nav>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <a class="mb-4 d-block" href="index.html">Home</a>
+        <a class="mb-4 d-block" href="about.html">Company</a>
+        <a class="mb-4 d-block" href="index.html#products">Products</a>
+        <a class="mb-4 d-block" href="contact.html">Contact</a>
+    </div>
 
-<!-- Mobile Header -->
-<header class="mobile-header">
-<div class="nav-logo">
-<a href="index.html"><img alt="NVG Logo" src="images/logo.png" style="height: 30px;"/></a>
-</div>
-<div class="hamburger">
-<span></span>
-<span></span>
-<span></span>
-</div>
-</header>
-<!-- Mobile Menu Overlay -->
-<div class="mobile-nav-overlay">
-<a class="mb-4 d-block" href="index.html">Home</a>
-<a class="mb-4 d-block" href="about.html">About</a>
-<a class="mb-4 d-block" href="contact.html">Contact</a>
-</div>
+    <!-- Active Link Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+             const navLinks = document.querySelectorAll('.nav-links a');
+             navLinks.forEach(link => {
+                 const href = link.getAttribute('href');
+                 if (href === currentPath || (currentPath === 'index.html' && href === './')) {
+                     link.classList.add('active');
+                 }
+             });
+        });
+    </script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    </div>
+
+    <!-- Blur Wrapper Start (Optional, handled by body class but good for structure) -->
+    <div class="content-blur-wrapper">
+    
+
+    
+    </div>
+
+    <!-- Blur Wrapper Start (Optional, handled by body class but good for structure) -->
+    <div class="content-blur-wrapper">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
 <!-- Hero Section -->
 <section class="panel panel-hero-modern reveal-panel">
-<div class="main-wrapper grid-3" style="align-items: center;">
+<div class="main-wrapper grid-3 hero-content-grid">
 <div style="grid-column: span 2;">
 <p class="label-text mb-4" style="color: var(--color-accent);">Labels <span style="margin: 0 8px; color: #ccc;">/</span> Paper Labels</p>
 <h1 class="reveal-text">Maplitho</h1>
@@ -299,30 +369,44 @@
 </div>
 </section>
 <!-- Footer -->
-<footer class="panel panel-dark mt-12">
-<div class="main-wrapper grid-3">
-<div>
-<h4 class="mb-4">Contact Us</h4>
-<p style="color: #fff; margin-bottom: 8px;">+91 63741 19514 | +91 97909 01400</p>
-<p style="color: #fff;"><a href="mailto:info@nvgpapers.com">info@nvgpapers.com</a></p>
-</div>
-<div>
-<h4 class="mb-4">Connect</h4>
-<div style="display: flex; gap: 16px;">
-<a href="https://www.linkedin.com/company/nvgpapers" style="opacity: 0.8; color: white;" target="_blank">LinkedIn</a>
-<a href="https://www.facebook.com/nvgpapers" style="opacity: 0.8; color: white;" target="_blank">Facebook</a>
-<a href="https://www.instagram.com/nvgpapers/" style="opacity: 0.8; color: white;" target="_blank">Instagram</a>
-</div>
-</div>
-<div>
-<p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+<footer class="panel mt-12" style="background: var(--bg-footer); color: var(--text-muted);">
+        <div class="main-wrapper grid-3">
+            <div>
+                <h4 class="mb-4" style="color: var(--text-inverse);">Contact Us</h4>
+                <p style="color: inherit; margin-bottom: 8px;"><a href="tel:+919388555999" style="color: inherit;">+91
+                        93 88
+                        555 999</a></p>
+                <p style="color: inherit; margin-bottom: 16px;"><a href="mailto:lebapapers@gmail.com"
+                        style="color: inherit;">lebapapers@gmail.com</a></p>
+                <p style="color: inherit; margin-bottom: 4px;"><strong style="color: var(--text-inverse);">Head
+                        Office</strong></p>
+                <p style="font-size: 0.9rem;">31/741A, Vyttila Junction, Ernakulam – 19,
+                    Kerala</p>
+            </div>
+            <div>
+                <h4 class="mb-4" style="color: var(--text-inverse);">Connect</h4>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="https://wa.me/919388555999?text=Hello%20LEBA%20Trading%20Agencies,%20I%20would%20like%20to%20enquire%20about%20your%20products.%20Please%20contact%20me."
+                        style="color: #25D366; display: flex; align-items: center; gap: 6px;" target="_blank">
+                        <i data-lucide="message-circle" style="width: 20px;"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+                <div style="margin-top: 24px;">
+                    <h4 class="mb-2" style="font-size: 1rem; color: var(--text-inverse);">Branch Office</h4>
+                    <p style="font-size: 0.9rem;">Dass Arcade, High Road, Thrissur – 01,
+                        Kerala</p>
+                </div>
+            </div>
+            <div>
+                <p style="font-size: 0.9rem;">
                     ©
-                    <script>document.write(new Date().getFullYear())</script> NVG Speciality Papers &amp; Coatings LLP.<br/>
-<span style="font-size: 0.8rem;">We are FSC Certified (FSC C181431)</span>
-</p>
-</div>
-</div>
-</footer>
+                    <script>document.write(new Date().getFullYear())</script> LEBA PAPERS (Leba Trading Agencies).<br />
+                    <span style="font-size: 0.8rem;">All Rights Reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
 <!-- Initialize Scripts -->
 <script src="js/leba-main.js"></script>
 </body>
